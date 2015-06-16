@@ -1,0 +1,32 @@
+* {
+	margin: 0;
+}
+body {
+	margin: 20px 0 10px 0; 
+	font-family: arial, helvetica, sans serif,"Microsoft YaHei","微软雅黑","宋体"; 
+	font-size: 8px; 
+	background:#ffffff; 
+	color:#666666;
+	
+}
+html, body {
+}
+table {
+	width:100%; 
+	border-collapse:collapse;
+}
+table, th, td{
+	border: 1px solid #fff;	
+}
+th{
+	background: #BBCFEB;
+	font-weight: normal;
+}
+td{
+	/* border-bottom: 1px solid #BBCFEB; */
+	min-height:30px;
+}
+.wordBreak{
+	word-wrap: break-word; 
+	word-break: break-all;
+}
