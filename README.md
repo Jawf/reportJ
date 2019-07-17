@@ -39,7 +39,25 @@ InputStream is = XhtmlPdfGenerator.getInstance().generatePdfToInputStream("repor
 			PdfWrappedStamper.getInstance().stampToPath(is, "d:/test_.pdf");
 ```
 
+3. Adjust resources/report-config.properties to generate diffent style samples. Ref to below samples.
+
 ## JUnit Test can generate sample pdf as below
 
-
+Sample 1:
+![Sample 1](https://github.com/Jawf/reportJ/blob/master/src/test/resources/sample/sampleStamp1.pdf):
 ![Sample 1](https://github.com/Jawf/reportJ/blob/master/src/test/resources/sample/sampleStampPdf1.png)
+
+Sample 2:
+![Sample 2](https://github.com/Jawf/reportJ/blob/master/src/test/resources/sample/sampleStampPdf2.png)
+
+Sample 3:
+![Sample 3](https://github.com/Jawf/reportJ/blob/master/src/test/resources/sample/sampleStampPdf3.png)
+
+Sample 4:
+![Sample 4](https://github.com/Jawf/reportJ/blob/master/src/test/resources/sample/sampleStampPdf4.png)
+
+Sample 5:
+![Sample 5](https://github.com/Jawf/reportJ/blob/master/src/test/resources/sample/sampleStampPdf5.png)
+
+Sample 6:
+![Sample 6](https://github.com/Jawf/reportJ/blob/master/src/test/resources/sample/sampleStampPdf6.png)
