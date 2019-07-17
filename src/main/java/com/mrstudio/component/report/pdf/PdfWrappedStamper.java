@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
-package com.homesoft.component.report.pdf;
+package com.mrstudio.component.report.pdf;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -14,13 +14,13 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.homesoft.component.report.configuration.GlobalConfig;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfGState;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
+import com.mrstudio.component.report.configuration.GlobalConfig;
 
 /**
  * 
