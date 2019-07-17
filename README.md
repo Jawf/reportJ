@@ -42,4 +42,4 @@ InputStream is = XhtmlPdfGenerator.getInstance().generatePdfToInputStream("repor
 ## JUnit Test can generate sample pdf as below
 
 
-![Sample 1](https://github.com/Jawf/reportJ/src/test/resources/sample/sampleStampPdf1.png)
+![Sample 1](https://github.com/Jawf/reportJ/blob/master/src/test/resources/sample/sampleStampPdf1.png)
