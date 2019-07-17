@@ -26,7 +26,7 @@ Since JText 2.1.7 is the last commercial-free version, I wappered and provied a 
 		<artifactId>freemarker</artifactId>
 		<version>${freemarker.version}</version>
 	</dependency>
-		
+	
 ##API calling examples:
 1. Generate Pdf to Path:
 ```
@@ -38,3 +38,5 @@ XhtmlPdfGenerator.getInstance().generatePdfToPath("report/template/test.ftl", mo
 InputStream is = XhtmlPdfGenerator.getInstance().generatePdfToInputStream("report/template/test.ftl", model);
 			PdfWrappedStamper.getInstance().stampToPath(is, "d:/test_.pdf");
 ```
+
+##JUnit Test can generate sample pdf as below##

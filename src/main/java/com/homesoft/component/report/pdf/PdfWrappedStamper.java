@@ -119,19 +119,43 @@ public class PdfWrappedStamper {
 			if (imageEnabled && dynamicImageEnabled){
 				int jx = GlobalConfig.getInstance().getStamperDynamicImagePositionXStart();
 				int jy = GlobalConfig.getInstance().getStamperDynamicImagePositionYStart();
-				while (jy < 800) {
-					// img.setRotation(30);
-					image.setRotationDegrees(GlobalConfig.getInstance().getStamperDynamicImageRotationDegree());
-					image.setAbsolutePosition(jx, jy);
-					over.setGState(gsDynamic);
-					try {
-						over.addImage(image);
-					} catch (DocumentException e) {
-						log.error(e.getMessage(), e);
+				int imageWidth = GlobalConfig.getInstance().getStamperImageWidth();
+				do {
+					if (GlobalConfig.getInstance().getStamperDynamicPositionXRepeat()){
+						jx += GlobalConfig.getInstance().getStamperDynamicImagePositionXStep();
+						jy += GlobalConfig.getInstance().getStamperDynamicImagePositionYStep();
+						int stepJx = jx;
+						int stepJy = jy;
+						jx = jx % imageWidth - imageWidth;
+						while (jx < 600) {
+							// img.setRotation(30);
+							image.setRotationDegrees(GlobalConfig.getInstance().getStamperDynamicImageRotationDegree());
+							image.setAbsolutePosition(jx, jy);
+							over.setGState(gsDynamic);
+							try {
+								over.addImage(image);
+							} catch (DocumentException e) {
+								log.error(e.getMessage(), e);
+							}
+							jx += (GlobalConfig.getInstance().getStamperDynamicImagePositionXStep() + imageWidth);
+							//jy += GlobalConfig.getInstance().getStamperDynamicImagePositionYStep();
+						}
+						jx = stepJx;
+						jy = stepJy;
+					} else {
+						// img.setRotation(30);
+						image.setRotationDegrees(GlobalConfig.getInstance().getStamperDynamicImageRotationDegree());
+						image.setAbsolutePosition(jx, jy);
+						over.setGState(gsDynamic);
+						try {
+							over.addImage(image);
+						} catch (DocumentException e) {
+							log.error(e.getMessage(), e);
+						}
+						jx += GlobalConfig.getInstance().getStamperDynamicImagePositionXStep();
+						jy += GlobalConfig.getInstance().getStamperDynamicImagePositionYStep();
 					}
-					jx += GlobalConfig.getInstance().getStamperDynamicImagePositionXStep();
-					jy += GlobalConfig.getInstance().getStamperDynamicImagePositionYStep();
-				}
+				} while (jy < 800 && GlobalConfig.getInstance().getStamperDynamicPositionYRepeat());
 			}
 	    }
 	    

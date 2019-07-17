@@ -77,6 +77,12 @@ public class GlobalConfig {
 	public int getStamperDynamicImagePositionYStart() {
 		return config.getInt("report.stamper.image.dynamic.position.y.start", 8);
 	}
+	public boolean getStamperDynamicPositionXRepeat() {
+		return config.getBoolean("report.stamper.image.dynamic.position.x.repeat", false);
+	}
+	public boolean getStamperDynamicPositionYRepeat() {
+		return config.getBoolean("report.stamper.image.dynamic.position.y.repeat", true);
+	}
 	public int getStamperDynamicImagePositionXStep() {
 		return config.getInt("report.stamper.image.dynamic.position.x.step", 0);
 	}
