@@ -7,6 +7,7 @@ package com.mrstudio.component.report.pdf;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -63,6 +64,15 @@ public class XhtmlPdfGenerator {
 	}
 	
 	public void generatePdfToPath(String templatePath, Map<String, Object> model, String outputFilePath) throws FileNotFoundException, IOException, DocumentException, TemplateException {
+		File file = new File(outputFilePath);
+		File parentFile = file.getParentFile();
+		if (!parentFile.exists()) {
+			boolean parentDir = parentFile.mkdirs();
+			if (!parentDir) {
+				log.debug("generatePdfToPath create parentDir=false");
+			}
+		}
+		
 		ITextRenderer renderer = generatePdf(templatePath, model);
 		
 		OutputStream os = new FileOutputStream(outputFilePath); 
