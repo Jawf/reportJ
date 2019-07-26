@@ -1,7 +1,42 @@
 # reportJ
 Since JText 2.1.7 is the last commercial-free version, I wappered and provied a easy way to use JText 2.1.7 and HTML-style template for generating report.
 
-## Maven dependencies:
+## How to use:
+
+#### 1. Add maven dependency:
+		<dependency>
+			<groupId>com.github.jawf</groupId>
+			<artifactId>reportj</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+
+
+#### 2. Use singleton API calling examples:
+1. Generate Pdf to Path:
+```
+XhtmlPdfGenerator.getInstance().generatePdfToPath("report/template/test.ftl", model, "d:/test.pdf");
+```
+
+2. Generate Pdf and stamper it, output to path:
+```
+InputStream is = XhtmlPdfGenerator.getInstance().generatePdfToInputStream("report/template/test.ftl", model);
+			PdfWrappedStamper.getInstance().stampToPath(is, "d:/test_.pdf");
+```
+
+### 3. (Optional) If cannot download the jar, please add repo:
+	<repositories>
+		repository>
+			<id>oss</id>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+		</repository>
+	</repositories>
+
+## TODO:
+1. Css file may not be rightly loaded in spring-boot project, please use style content within template file instead.
+
+
+##Implementation for this project with Maven dependencies:
 
 	<dependency>
 		<groupId>com.lowagie</groupId>
@@ -26,22 +61,9 @@ Since JText 2.1.7 is the last commercial-free version, I wappered and provied a 
 		<artifactId>freemarker</artifactId>
 		<version>${freemarker.version}</version>
 	</dependency>
-	
-## API calling examples:
-1. Generate Pdf to Path:
-```
-XhtmlPdfGenerator.getInstance().generatePdfToPath("report/template/test.ftl", model, "d:/test.pdf");
-```
 
-2. Generate Pdf and stamper it, output to path:
-```
-InputStream is = XhtmlPdfGenerator.getInstance().generatePdfToInputStream("report/template/test.ftl", model);
-			PdfWrappedStamper.getInstance().stampToPath(is, "d:/test_.pdf");
-```
 
-3. Adjust **resources/report-config.properties** to generate diffent style samples. Ref to below samples.
-
-## JUnit Test can generate sample pdf as below
+## JUnit Test in source can generate sample pdf as below
 
 Sample 1:
 
