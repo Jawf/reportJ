@@ -3,7 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.jawf</groupId>
 	<artifactId>reportj</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<name>reportj</name>
+	<version>1.1-SNAPSHOT</version>
+	<url>https://github.com/Jawf/reportJ</url>
+	<description>Easy way to use JText 2.1.7 and HTML-style template for generating report</description>
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>https://github.com/Jawf/reportJ/blob/master/LICENSE</url>
+			<comments>Permissions of this copyleft license are conditioned on making available complete source code of licensed works and modifications under the same license or the GNU GPLv3. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. However, a larger work using the licensed work through interfaces provided by the licensed work may be distributed under different terms and without source code for the larger work.</comments>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -105,11 +115,14 @@
 		<connection>https://github.com/Jawf/reportJ.git</connection>
 	</scm>
 	
+	<!-- before release need upload gpg certificate to gpg server by: gpg –keyserver hkp://pool.sks-keyservers.net:11371 –send-keys C6EED57A -->
+	<!-- then can verify or view the certificate by: gpg –keyserver hkp://pool.sks-keyservers.net:11371 –recv-keys C6EED57A  -->
+	<!-- profile use for release: mvn clean deploy -Prelease -Dgpg.passphrase=xxx -->
 	<profiles>
 		<profile>
-			<id>default</id>
+			<id>release</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<plugins>
