@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactory;
 import org.xhtmlrenderer.pdf.ITextFontResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
@@ -109,13 +110,25 @@ public class XhtmlPdfGenerator {
 		StringWriter result = new StringWriter();
 		template.process(model, result);
 		String content = result.toString();
+		log.debug("generatePdf tempalte content={}", content);
 		//String content = FreeMarkers.renderTemplate(template, model);//<#assign fmt=JspTaglibs["/WEB-INF/tlds/fmt.tld"]><@fmt.message key="label.fn.compnt.name"/> 
 		
         ITextRenderer renderer = new ITextRenderer();
- 
         ITextFontResolver fontResolver = renderer.getFontResolver(); 
-        fontResolver.addFont(resourcePath.concat("/report/resource/font/MSYH.TTF"), BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED); 
-        fontResolver.addFont(resourcePath.concat("/report/resource/font/ARIAL.TTF"), BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED); 
+        try {
+        	log.debug("generatePdf with resourcePath={}", resourcePath);
+			fontResolver.addFont(getJarResourcePath("/report/resource/font/MSYH.TTF"), BaseFont.IDENTITY_H,
+					BaseFont.NOT_EMBEDDED);
+			fontResolver.addFont(getJarResourcePath("/report/resource/font/ARIAL.TTF"), BaseFont.IDENTITY_H,
+					BaseFont.NOT_EMBEDDED);
+		} catch (Exception e) {
+			log.debug("generatePdf with reget resourcePath={}", resourcePath);
+			fontResolver.addFont(resourcePath.concat("/report/resource/font/MSYH.TTF"), BaseFont.IDENTITY_H,
+					BaseFont.NOT_EMBEDDED);
+			fontResolver.addFont(resourcePath.concat("/report/resource/font/ARIAL.TTF"), BaseFont.IDENTITY_H,
+					BaseFont.NOT_EMBEDDED);
+		}
+		 
         
         //Image Path
         //renderer.getSharedContext().setBaseURL(resourcePath.concat("/report/resource/image")); 
@@ -135,7 +148,22 @@ public class XhtmlPdfGenerator {
 		} else {
 			url = Thread.currentThread().getClass().getResource("/");
 		}
+		
+		
 		resourcePath = url.getPath();
 		return resourcePath;
 	} 
+	
+	public String getJarResourcePath(String relativePath) {
+		String resourcePath = null;
+		try {
+			// resourcePath = new
+			// File(ResourceUtils.getURL("classpath:").getPath()).getParentFile().getParentFile().getParent();
+			final ClassPathResource regular = new ClassPathResource(relativePath);
+			resourcePath = regular.getURL().toString();
+		} catch (IOException e) {
+			log.debug(e.getMessage(), e);
+		}
+		return resourcePath;
+	}
 }  
